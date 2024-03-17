@@ -4,7 +4,16 @@ import connectDB from "./db/index.js";
 
 dotenv.config({ path: "./env" });
 
-connectDB();
+connectDB()
+.then(() => { //we get a promise from async function connectDB
+    app.listen(process.env.PORT || 3000, () => {
+        console.log(`Server running on port ${process.env.PORT}`);
+    });
+})
+.catch((error) => {
+    console.log("Error connecting to the database: ", error);
+    process.exit(1);
+})
 
 
 
