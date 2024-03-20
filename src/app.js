@@ -22,4 +22,11 @@ app.use(express.static("public"));
 //to extract cookies from browser
 app.use(cookieParser());
 
-export default app;
+//Routes import
+import userRouter from './routes/user.routes.js'; //we have given manchaha naam to "router -> userRouter"
+
+//Routes declaration
+app.use("/api/v1/user", userRouter) //http://localhost:3000/api/v1/user/register
+
+
+export { app };
