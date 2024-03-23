@@ -26,7 +26,7 @@ app.use(cookieParser());
 import userRouter from './routes/user.routes.js'; //we have given manchaha naam to "router -> userRouter"
 
 //Routes declaration
-app.use("/api/v1/user", userRouter) //http://localhost:3000/api/v1/user/register
+app.use("/api/v1/user", userRouter) //http://localhost:000/api/v1/user/register
 
 
 export { app };
