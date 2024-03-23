@@ -51,6 +51,7 @@ const userSchema = new Schema(
     }
 )
 
+// pre save hook to hash password
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
 
@@ -58,10 +59,12 @@ userSchema.pre("save", async function (next) {
     next()
 })
 
+// instance method to compare password
 userSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password, this.password)
 }
 
+// instance method to generate access token
 userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
         {
@@ -77,6 +80,7 @@ userSchema.methods.generateAccessToken = function(){
     )
 }
 
+// instance method to generate refresh token
 userSchema.methods.generateRefreshToken = function(){
     return jwt.sign(
         {
