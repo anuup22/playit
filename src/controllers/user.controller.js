@@ -154,9 +154,9 @@ const loginUser = asyncHandler(async (req, res) => {
 
 //to logout user, we need to remove the refresh token from the user document
 const logoutUser = asyncHandler(async (req, res) => {
-    await User.findOneAndReplace(
+    await User.findOneAndUpdate(
         req.user._id, 
-        { $set: { refreshToken: undefined }},
+        { $unset: { refreshToken: 1 }},
         { new: true }
     )
     // res.clearCookie("accessToken")
